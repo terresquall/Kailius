@@ -1,15 +1,66 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Terresquall;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
-public class Stats : MonoBehaviour {
+public class Stats : PersistentObject {
+
+    // Create the SaveData object, which specifies what data needs to be saved.
+    [System.Serializable]
+    public new class SaveData : PersistentObject.SaveData {
+        public int health = 200, power = 0, attackDamage = 100, defense = 0;
+        protected float x, y;
+
+        // Shorthand to allow us to get / set the position instead of
+        // manually setting the x and y in the save data.
+        public Vector2 position {
+            get { return new Vector2(x, y); }
+            set { x = value.x; y = value.y; }
+        }
+    }
+
+    // This variable allows us to access health, power, attackDamage and defense.
+    public SaveData data = new SaveData();
+
+    // We only need to record the position before saving.
+    // The rest of the attributes are updated live by wrappers.
+    public override PersistentObject.SaveData Save() {
+        if(CanSave()) {
+            data.saveID = saveID;
+            data.position = transform.position;
+            return data;
+        }
+        return null;
+    }
+
+    // Since wrappers get values from <data>, we only need to set it
+    // and the position variable.
+    public override bool Load(PersistentObject.SaveData loadedData) {
+        data = loadedData as SaveData;
+        if(data != null) {
+            transform.position = data.position;
+            return true;
+        }
+        return false;
+    }
     
-    public int health = 200;
-    public int power = 0;
-    public int attackDamage = 100;
-    public int defense = 0;
+    // Wrappers that route the getting / setting to the data variable.
+    public int health { 
+        get { return data.health; }
+        set { data.health = value; }
+    }
+    public int power { 
+        get { return data.power; }
+        set { data.power = value; }
+    }
+    public int attackDamage { 
+        get { return data.attackDamage; } 
+        set { data.attackDamage = value; }
+    }
+    public int defense { 
+        get { return data.defense; }
+        set { data.defense = value; }
+    }
 
     public GameObject camera;
     public GameObject stats;

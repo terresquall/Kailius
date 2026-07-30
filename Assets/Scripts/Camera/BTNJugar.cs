@@ -1,11 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
-public class BTNJugar : MonoBehaviour {
-    
-    private void OnMouseDown() {
-        SceneManager.LoadScene("Scene_1");
+public class BTNJugar : MonoBehaviour
+{
+    public TitleSaveMenu titleSaveMenu;
+
+    private void OnMouseDown()
+    {
+        if (titleSaveMenu != null)
+        {
+            titleSaveMenu.OpenSlotMenu();
+            return;
+        }
+
+        TitleSaveMenu foundMenu = FindObjectOfType<TitleSaveMenu>();
+
+        if (foundMenu != null)
+        {
+            foundMenu.OpenSlotMenu();
+        }
+        else
+        {
+            Debug.LogWarning("No TitleSaveMenu found in the title scene.");
+        }
     }
 }
