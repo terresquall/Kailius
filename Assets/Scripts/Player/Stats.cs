@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Stats : PersistentObject {
 
+    private const string DEFAULT_SAVE_ID = "PlayerStatsData";
     // Create the SaveData object, which specifies what data needs to be saved.
     [System.Serializable]
     public new class SaveData : PersistentObject.SaveData {
@@ -106,7 +107,10 @@ public class Stats : PersistentObject {
 
     // Start is called before the first frame update
     void Start() {
-        if(instance == null) {
+        if (string.IsNullOrEmpty(saveID)) {
+            saveID = DEFAULT_SAVE_ID;
+        }
+        if (instance == null) {
             instance = this;
         }
 

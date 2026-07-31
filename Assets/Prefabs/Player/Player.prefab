@@ -4955,7 +4955,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2369990289210757356}
   - component: {fileID: 2369990289210757268}
-  - component: {fileID: 1293152323399816330}
   - component: {fileID: 2369990289210757269}
   - component: {fileID: 2369990289210757270}
   - component: {fileID: 2369990289210757271}
@@ -5039,19 +5038,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1293152323399816330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2369990289210757357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56dba2529608eee4abc2c34881704e95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveID: aafbdc40-6e56-4ce8-b7eb-b2f10312d311
 --- !u!95 &2369990289210757269
 Animator:
   serializedVersion: 5
@@ -5142,10 +5128,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85612bf83e70c65499d90e83b0a744f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 200
-  power: 0
-  attackDamage: 100
-  defense: 0
+  saveID: 
+  data:
+    saveID: 
+    health: 200
+    power: 0
+    attackDamage: 100
+    defense: 0
   camera: {fileID: 0}
   stats: {fileID: 0}
   hearts: {fileID: 0}

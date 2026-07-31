@@ -21,8 +21,8 @@ namespace Terresquall {
         public static double lastLoadTime = 0; // The Time.time when we last loaded the game.
         static string savePath => $"{Application.persistentDataPath}/saves/";
 
-        public const string VERSION = "0.2.1";
-        public const string LAST_UPDATED = "6 March 2026";
+        public const string VERSION = "0.3.0";
+        public const string LAST_UPDATED = "26 July 2026";
 
         [DataContract]
         public class SaveFile {
@@ -83,6 +83,9 @@ namespace Terresquall {
         // Events.
         public static event System.Action<SaveFile> OnFormatSave;
 
+        protected static bool isSaving = false;
+        public static bool IsSaving() { return isSaving; }
+
         // Transfer instance variables over to static variables.
         protected virtual void OnEnable() {
             debug = showDebugLogs;
@@ -117,8 +120,8 @@ namespace Terresquall {
         }
 
         // The asynchronous version of the QuickSave single target function.
-        public static async Task<SaveFile> QuickSaveAsync(PersistentObject target) {
-            await Task.Yield();
+        [System.Obsolete]
+        public static SaveFile QuickSaveAsync(PersistentObject target) {
             return QuickSave(target);
         }
 
@@ -128,11 +131,9 @@ namespace Terresquall {
         }
 
         // An asynchronous version of the QuickSave function.
-        public static async Task<SaveFile> QuickSaveAsync(PersistentObject[] targets = null) {
-            SaveIndicator.Toggle(true);
-            await Task.Yield();
+        [System.Obsolete]
+        public static SaveFile QuickSaveAsync(PersistentObject[] targets = null) {
             SaveFile result = QuickSave(targets);
-            SaveIndicator.Toggle(false);
             return result;
         }
 
@@ -256,27 +257,41 @@ namespace Terresquall {
 
         // Saves the game into persistent memory.
         public static void SaveGame(int id = -1, bool reprocessSave = true) {
-            if (id < 0) id = currentSlot;
-
-            // Ensure the currents ave file has the latest data
-            if (reprocessSave || currentSaveFile == null) currentSaveFile = QuickSave();
-
-            // Format the save.
-            MemoryStream data = FormatSave();
-
-            // Ensures our save directory exists.
-            Directory.CreateDirectory(savePath);
-
-            // Save the file to a stream.
-            string path = GetSavePath(id);
-            using (FileStream stream = File.Open(path, FileMode.Create)) {
-                data.Position = 0;
-                data.CopyTo(stream);
+            // Don't allow save to be called again if already saving.
+            if (isSaving) {
+                Debug.LogWarning("Bench.SaveGame() called while the previous one was still processing. Please do not do this.");
+                return;
             }
+            isSaving = true;
 
-            if (debug) Debug.Log($"Saved data to {path}.");
+            // Begin saving. We want to catch any exceptions and disable isSaving.
+            try {
+                if (id < 0) id = currentSlot;
 
-            data.Dispose();
+                // Ensure the currents ave file has the latest data
+                if (reprocessSave || currentSaveFile == null) currentSaveFile = QuickSave();
+
+                // Format the save.
+                MemoryStream data = FormatSave();
+
+                // Ensures our save directory exists.
+                Directory.CreateDirectory(savePath);
+
+                // Save the file to a stream.
+                string path = GetSavePath(id);
+                using (FileStream stream = File.Open(path, FileMode.Create)) {
+                    data.Position = 0;
+                    data.CopyTo(stream);
+                }
+
+                if (debug) Debug.Log($"Saved data to {path}.");
+
+                data.Dispose();
+            } catch(System.Exception e) {
+                Debug.LogException(e);
+            } finally {
+                isSaving = false;
+            }
         }
 
         public static async void SaveGameAsync(bool reprocessSave) {
@@ -284,33 +299,46 @@ namespace Terresquall {
         }
 
         public static async void SaveGameAsync(int id = -1, bool reprocessSave = true) {
+            // Don't allow save to be called again if already saving.
+            if (isSaving) {
+                Debug.LogWarning("Bench.SaveGameAsync() called while the previous one was still processing. Please do not do this.");
+                return;
+            }
+            isSaving = true;
             SaveIndicator.Toggle(true);
 
-            if (id < 0) id = currentSlot;
+            try {
 
-            // Ensure the cache is filled with the latest data
-            if (reprocessSave || currentSaveFile == null) currentSaveFile = QuickSave();
+                if (id < 0) id = currentSlot;
 
-            MemoryStream data = null;
-            await Task.Yield();
+                // Ensure the cache is filled with the latest data
+                if (reprocessSave || currentSaveFile == null) currentSaveFile = QuickSave();
 
-            data = FormatSave();
-            if (data == null) return;
+                MemoryStream data = null;
+                await Task.Yield();
 
-            // Ensures our save directory exists.
-            Directory.CreateDirectory(savePath);
+                data = FormatSave();
+                if (data == null) return;
 
-            // Create the binary formatter to save the file.
-            string path = GetSavePath(id);
-            using (FileStream stream = File.Open(path, FileMode.Create)) {
-                data.Position = 0;
-                await data.CopyToAsync(stream);
+                // Ensures our save directory exists.
+                Directory.CreateDirectory(savePath);
+
+                // Create the binary formatter to save the file.
+                string path = GetSavePath(id);
+                using (FileStream stream = File.Open(path, FileMode.Create)) {
+                    data.Position = 0;
+                    await data.CopyToAsync(stream);
+                }
+
+                if (debug) Debug.Log($"Saved (async) data to {path}.");
+
+                await Task.Run(() => data.Dispose());
+            } catch (System.Exception e) {
+                Debug.LogException(e);
+            } finally {
+                SaveIndicator.Toggle(false);
+                isSaving = false;
             }
-
-            if (debug) Debug.Log($"Saved (async) data to {path}.");
-
-            await Task.Run(() => data.Dispose());
-            SaveIndicator.Toggle(false);
         }
 
         // Extracts only the metadata from the save file.
