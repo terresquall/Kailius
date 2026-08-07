@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Joystick Pack\Scripts\Editor\VariableJoystickEditor.cs" />
+    <Compile Include="Assets\Bench Universal Save System\Scripts\Editor\SaveDataPropertyDrawer.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Editor\DynamicJoystickEditor.cs" />
     <Compile Include="Assets\Bench Universal Save System\Scripts\Editor\UISaveSlotEditor.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Editor\FloatingJoystickEditor.cs" />
@@ -65,7 +66,6 @@
     <Compile Include="Assets\Bench Universal Save System\Scripts\Editor\BenchEditor.cs" />
     <Compile Include="Assets\Bench Universal Save System\Scripts\Editor\UISaveSlotManagerEditor.cs" />
     <Compile Include="Assets\Bench Universal Save System\Scripts\Editor\PersistentObjectEditor.cs" />
-    <Compile Include="Assets\Bench Universal Save System\Scripts\Editor\SaveDataPropertyDrawer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

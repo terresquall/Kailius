@@ -105,7 +105,6 @@
     <Compile Include="Assets\Scripts\Scores\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\Enemies\MageBall.cs" />
     <Compile Include="Assets\Bench Universal Save System\Scripts\SavePoint.cs" />
-    <Compile Include="Assets\Scripts\BenchIntegration\TitleSaveMenu.cs" />
     <Compile Include="Assets\Scripts\Camera\VolumenController.cs" />
     <Compile Include="Assets\Scripts\Enemies\Patrol.cs" />
   </ItemGroup>

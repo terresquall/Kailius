@@ -87,6 +87,12 @@ public class ScoreManager : PersistentObject {
         this.scoreGems = PlayerPrefs.GetInt("ScoreGems", 0);
         this.scoreStars = PlayerPrefs.GetInt("ScoreStars", 0);
 
+        Bench.SaveFile currentSave = Bench.GetCurrentSaveFile();
+
+        if (currentSave != null && currentSave.slot == Bench.currentSlot) {
+            Bench.QuickLoad(this);
+        }
+
         RefreshUI();
     }
 

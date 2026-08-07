@@ -43,8 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b058a64707e3a43820c73e542204a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveID: ScoreManagerData
   Score: {fileID: 0}
   textScore: {fileID: 0}
   textCoins: {fileID: 0}
   textGems: {fileID: 0}
   textStars: {fileID: 0}
+  data:
+    saveID: 
+    score: 0
+    scoreCoins: 0
+    scoreGems: 0
+    scoreStars: 0

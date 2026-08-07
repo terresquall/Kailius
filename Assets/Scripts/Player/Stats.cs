@@ -119,6 +119,13 @@ public class Stats : PersistentObject {
             this.attackDamage = (int)PlayerPrefs.GetInt("AttackDamage", 0);
         }
         this.defense = (int)PlayerPrefs.GetInt("Defense", 0);
+
+        Bench.SaveFile currentSave = Bench.GetCurrentSaveFile();
+
+        if (currentSave != null && currentSave.slot == Bench.currentSlot) {
+            Bench.QuickLoad(this);
+        }
+
         // Actualiza los contadores 
         this.textDamage.text = "+" + attackDamage.ToString();
         this.textDefense.text = "+" + defense.ToString();

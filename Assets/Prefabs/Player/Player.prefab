@@ -5128,7 +5128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85612bf83e70c65499d90e83b0a744f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveID: 
+  saveID: PlayerStatsData
   data:
     saveID: 
     health: 200

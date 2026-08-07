@@ -2,25 +2,25 @@
 
 public class BTNJugar : MonoBehaviour
 {
-    public TitleSaveMenu titleSaveMenu;
+    ////public TitleSaveMenu titleSaveMenu;
 
-    private void OnMouseDown()
-    {
-        if (titleSaveMenu != null)
-        {
-            titleSaveMenu.OpenSlotMenu();
-            return;
-        }
+    //private void OnMouseDown()
+    //{
+    //    if (titleSaveMenu != null)
+    //    {
+    //        titleSaveMenu.OpenSlotMenu();
+    //        return;
+    //    }
 
-        TitleSaveMenu foundMenu = FindObjectOfType<TitleSaveMenu>();
+    //    TitleSaveMenu foundMenu = FindObjectOfType<TitleSaveMenu>();
 
-        if (foundMenu != null)
-        {
-            foundMenu.OpenSlotMenu();
-        }
-        else
-        {
-            Debug.LogWarning("No TitleSaveMenu found in the title scene.");
-        }
-    }
+    //    if (foundMenu != null)
+    //    {
+    //        foundMenu.OpenSlotMenu();
+    //    }
+    //    else
+    //    {
+    //        Debug.LogWarning("No TitleSaveMenu found in the title scene.");
+    //    }
+    //}
 }
