@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\WANG HONGMEI\\Desktop\\Unity\\Kailius\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DE2E539B-B835-4BB6-0CEE-7B5DEB0AC5C1}|Assembly-CSharp.csproj|c:\\users\\wang hongmei\\desktop\\unity\\kailius\\assets\\bench universal save system\\scripts\\savepoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE2E539B-B835-4BB6-0CEE-7B5DEB0AC5C1}|Assembly-CSharp.csproj|solutionrelative:assets\\bench universal save system\\scripts\\savepoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DE2E539B-B835-4BB6-0CEE-7B5DEB0AC5C1}|Assembly-CSharp.csproj|c:\\users\\wang hongmei\\desktop\\unity\\kailius\\assets\\scripts\\scores\\scoremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE2E539B-B835-4BB6-0CEE-7B5DEB0AC5C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scores\\scoremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DE2E539B-B835-4BB6-0CEE-7B5DEB0AC5C1}|Assembly-CSharp.csproj|C:\\Users\\WANG HONGMEI\\Desktop\\Unity\\Kailius\\assets\\scripts\\player\\stats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{DE2E539B-B835-4BB6-0CEE-7B5DEB0AC5C1}|Assembly-CSharp.csproj|c:\\users\\wang hongmei\\desktop\\unity\\kailius\\assets\\scripts\\player\\stats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DE2E539B-B835-4BB6-0CEE-7B5DEB0AC5C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\stats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|c:\\users\\wang hongmei\\desktop\\unity\\kailius\\assets\\scripts\\benchintegration\\savebench.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\scripts\\benchintegration\\savebench.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\WANG HONGMEI\\Desktop\\Unity\\Kailius\\Assets\\Scripts\\BenchIntegration\\SaveBench.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\BenchIntegration\\SaveBench.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\WANG HONGMEI\\Desktop\\Unity\\Kailius\\Assets\\Bench Universal Save System\\Scripts\\SavePoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Bench Universal Save System\\Scripts\\SavePoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,6 +31,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ScoreManager.cs",
+              "DocumentMoniker": "C:\\Users\\WANG HONGMEI\\Desktop\\Unity\\Kailius\\Assets\\Scripts\\Scores\\ScoreManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Scores\\ScoreManager.cs",
+              "ToolTip": "C:\\Users\\WANG HONGMEI\\Desktop\\Unity\\Kailius\\Assets\\Scripts\\Scores\\ScoreManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Scores\\ScoreManager.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAIA7wDUAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-07T02:10:03.718Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "SavePoint.cs",
               "DocumentMoniker": "C:\\Users\\WANG HONGMEI\\Desktop\\Unity\\Kailius\\Assets\\Bench Universal Save System\\Scripts\\SavePoint.cs",
               "RelativeDocumentMoniker": "Assets\\Bench Universal Save System\\Scripts\\SavePoint.cs",
@@ -34,8 +51,7 @@
               "RelativeToolTip": "Assets\\Bench Universal Save System\\Scripts\\SavePoint.cs",
               "ViewState": "AgIAAG8AAAAAAAAAAAAmwIoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-31T03:49:44.559Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-31T03:49:44.559Z"
             },
             {
               "$type": "Document",
@@ -45,9 +61,10 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\Stats.cs",
               "ToolTip": "C:\\Users\\WANG HONGMEI\\Desktop\\Unity\\Kailius\\Assets\\Scripts\\Player\\Stats.cs",
               "RelativeToolTip": "Assets\\Scripts\\Player\\Stats.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAnwC4AAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-31T02:41:32.448Z"
+              "WhenOpened": "2026-07-31T02:41:32.448Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

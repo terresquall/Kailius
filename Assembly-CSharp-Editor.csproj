@@ -65,6 +65,7 @@
     <Compile Include="Assets\Bench Universal Save System\Scripts\Editor\BenchEditor.cs" />
     <Compile Include="Assets\Bench Universal Save System\Scripts\Editor\UISaveSlotManagerEditor.cs" />
     <Compile Include="Assets\Bench Universal Save System\Scripts\Editor\PersistentObjectEditor.cs" />
+    <Compile Include="Assets\Bench Universal Save System\Scripts\Editor\SaveDataPropertyDrawer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

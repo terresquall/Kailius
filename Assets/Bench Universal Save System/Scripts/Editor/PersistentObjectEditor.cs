@@ -10,8 +10,6 @@ namespace Terresquall {
         protected bool savedDataFoldout = false;
         protected int currentSaveSlot = 0;
 
-
-
         protected virtual void OnEnable() {
             persistentObject = target as PersistentObject;
         }

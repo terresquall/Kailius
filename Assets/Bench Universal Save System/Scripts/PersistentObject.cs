@@ -43,7 +43,7 @@ namespace Terresquall {
                 // Print out all the properties in the save data.
                 Type type = GetType();
                 StringBuilder output = new StringBuilder(GetClassName()).Append("\n");
-                FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
+                FieldInfo[] fields = GetFields();
                 foreach (FieldInfo field in fields) {
                     // Get the value of the property
                     object value = field.GetValue(this) ?? "null";

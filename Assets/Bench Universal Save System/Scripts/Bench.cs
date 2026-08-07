@@ -108,15 +108,34 @@ namespace Terresquall {
         }
 
         // Looks for the save data of a specific object.
-        public static PersistentObject.SaveData Find(PersistentObject p) {
+        public static PersistentObject.SaveData Find(PersistentObject p) { return Find(p.saveID); }
+        public static PersistentObject.SaveData Find(string saveID) {
             if (currentSaveFile == null || currentSaveFile.data == null) return null;
-            return currentSaveFile.data.Find(obj => obj.saveID == p.saveID);
+            return currentSaveFile.data.Find(obj => obj.saveID == saveID);
         }
         
-        public static PersistentObject.SaveData ReadAndFind(PersistentObject p, int slot = 0) {
+        public static PersistentObject.SaveData ReadAndFind(PersistentObject p, int slot = 0) { return ReadAndFind(p.saveID, slot); }
+        public static PersistentObject.SaveData ReadAndFind(string saveID, int slot = 0) {
             SaveFile save = ReadSaveFile(slot);
             if (save == null || save.data == null) return null;
-            return save.data.Find(obj => obj.saveID == p.saveID);
+            return save.data.Find(obj => obj.saveID == saveID);
+        }
+
+        // Directly inserts or overwrites save data in the cache under a given save ID.
+        // Useful for saving objects that aren't currently a PersistentObject in the Scene
+        // (e.g. procedurally generated or destroyed objects) using data you build yourself.
+        public static bool Write(string saveID, PersistentObject.SaveData data) {
+            if (string.IsNullOrEmpty(saveID) || data == null) return false;
+            if (currentSaveFile == null) currentSaveFile = new SaveFile(currentSlot);
+
+            // Make sure the save ID on the data matches the one we're saving under.
+            data.saveID = saveID;
+
+            int index = currentSaveFile.data.FindIndex(item => item.saveID == saveID);
+            if (index < 0) currentSaveFile.data.Add(data);
+            else currentSaveFile.data[index] = data;
+
+            return true;
         }
 
         // The asynchronous version of the QuickSave single target function.
@@ -174,22 +193,11 @@ namespace Terresquall {
 
                 PersistentObject.SaveData s = p.Save();
                 if (s == null) continue;
-
-                // Make sure that you add the object's save ID, in case the 
-                // user forgets to define it in the Save() function of their object.
-                if (string.IsNullOrEmpty(s.saveID)) s.saveID = p.saveID;
-
-                // If there is no copy of the object in the cache, add it.
-                // Otherwise, find a copy of the object in the cache and overwrite it.
-                int index = currentSaveFile.data.FindIndex(item => item.saveID == s.saveID);
-                if (index < 0) currentSaveFile.data.Add(s);
-                else currentSaveFile.data[index] = s;
-
-                // Print the saved contents if debug is turned on.
-                if (debug)
-                    debugOutput.Append(
-                        $"Saving data for GameObject \"{p.name}\" with save ID {p.saveID}.\n"
-                    ).Append(s).Append('\n').Append(DEBUG_SEPARATOR);
+                if(Write(p.saveID, s)) {
+                    debugOutput.Append($"- {p.name} with SaveID {p.saveID}.").Append('\n');
+                } else {
+                    debugOutput.Append($"- Failed to save {p.name} with SaveID {p.saveID}.").Append('\n');
+                }
             }
 
             // Outputs the debug data.
@@ -213,7 +221,7 @@ namespace Terresquall {
 
             // The actual loading work.
             foreach (PersistentObject p in saveables) {
-                QuickLoad(p);
+                QuickLoad(p, debugOutput);
             }
 
             if (debug) {
@@ -390,7 +398,7 @@ namespace Terresquall {
 
         public static SaveFile ReadSaveFile(int slot) {
             slot = Mathf.Max(0, slot);
-            if (!SlotHasSave(currentSlot))
+            if (!SlotHasSave(slot))
                 return null;
 
             // Load and read the file.
